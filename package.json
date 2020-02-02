@@ -1,0 +1,51 @@
+{
+  "name": "vue-state-composer",
+  "version": "0.1.0",
+  "description": "Composable state for Vue SPA and Universal Apps",
+  "main": "dist/state-composer.umd.js",
+  "module": "dist/state-composer.esm.js",
+  "unpkg": "dist/state-composer.min.js",
+  "browser": "dist/state-composer.esm.js",
+  "types": "dist/src",
+  "sideEffects": false,
+  "author": {
+    "name": "Johannes Lamberts",
+    "email": "info@j-lamberts.de"
+  },
+  "scripts": {
+    "lint": "eslint --ext ts src spec",
+    "lint:fix": "yarn run lint --fix",
+    "test": "jest",
+    "build": "rm -rf ./dist && rollup -c ./rollup.config.js",
+    "prepare": "yarn run lint && yarn run test && yarn run build"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "@vue/composition-api": "^0.3.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.4",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@rollup/plugin-alias": "^3.0.0",
+    "@rollup/plugin-replace": "^2.2.1",
+    "@types/jest": "^24.0.18",
+    "@typescript-eslint/eslint-plugin": "^2.10.0",
+    "@typescript-eslint/parser": "^2.3.1",
+    "@vue/test-utils": "^1.0.0-beta.30",
+    "eslint": "^6.4.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "husky": "^4.0.7",
+    "jest": "^24.9.0",
+    "jest-html-reporters": "^1.2.1",
+    "prettier": "^1.18.2",
+    "rollup": "^1.21.4",
+    "rollup-plugin-terser": "^5.1.2",
+    "rollup-plugin-typescript2": "^0.25.2",
+    "standard-version": "^7.1.0",
+    "ts-jest": "^24.1.0",
+    "typescript": "^3.6.3",
+    "vue": "^2.6.11",
+    "vue-template-compiler": "^2.6.11"
+  }
+}
