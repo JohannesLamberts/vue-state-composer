@@ -1,6 +1,6 @@
 {
   "name": "vue-state-composer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Composable state for Vue SPA and Universal Apps",
   "main": "dist/state-composer.umd.js",
   "module": "dist/state-composer.esm.js",
