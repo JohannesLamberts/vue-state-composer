@@ -12,6 +12,18 @@
     "name": "Johannes Lamberts",
     "email": "info@j-lamberts.de"
   },
+  "keywords": [
+    "vue",
+    "vuex",
+    "vue3",
+    "composition-api",
+    "state management"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:johanneslamberts/vue-state-composer.git"
+  },
+  "homepage": "https://github.com/johanneslamberts/vue-state-composer",
   "scripts": {
     "lint": "eslint --ext ts src spec",
     "lint:fix": "yarn run lint --fix",
