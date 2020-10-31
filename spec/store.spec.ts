@@ -1,5 +1,5 @@
 import { createLocalVue, mount } from '@vue/test-utils'
-import { computed, createComponent, toRefs } from '@vue/composition-api'
+import { computed, defineComponent, toRefs } from '@vue/composition-api'
 import CompositionApi from '@vue/composition-api'
 import { createStore } from '../src'
 import { installOnCreateState, installOnInitialized } from '../src/store'
@@ -42,7 +42,7 @@ it('should not share state', () => {
 })
 
 const providingComponent = (childComponent: any) =>
-  createComponent({
+  defineComponent({
     setup() {
       const { increment } = counterStore.useProvider()
       return { increment }
@@ -52,7 +52,7 @@ const providingComponent = (childComponent: any) =>
     },
   })
 
-const injectingComponent = createComponent({
+const injectingComponent = defineComponent({
   setup() {
     const { count } = counterStore.useConsumer()
     return {
@@ -83,7 +83,7 @@ it('should throw if store is not found for injection', () => {
 
 describe('with OnCreateState hooks', () => {
   const onCreate = jest.fn()
-  let uninstall: Function
+  let uninstall: () => void
 
   beforeEach(() => {
     uninstall = installOnCreateState(onCreate)
@@ -124,7 +124,7 @@ describe('with OnCreateState hooks', () => {
 
 describe('with OnInitialized hooks', () => {
   const onInitialized = jest.fn()
-  let uninstall: Function
+  let uninstall: () => void
 
   function firstPassedApi() {
     // second argument is the initial API passed to the hook

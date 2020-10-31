@@ -19,8 +19,8 @@ const devtoolHook: DevtoolHook | undefined = target.__VUE_DEVTOOLS_GLOBAL_HOOK__
 
 interface RootStore {
   _devtoolHook: DevtoolHook
-  _vm: { $options: { computed: {} } }
-  _mutations: {}
+  _vm: { $options: { computed: Record<string, unknown> } }
+  _mutations: Record<string, unknown>
   // we neeed to store modules names
   _modulesNamespaceMap: Record<string, boolean>
   _modules: {
@@ -29,8 +29,11 @@ interface RootStore {
   }
   state: Record<string, any>
 
+  // eslint-disable-next-line @typescript-eslint/ban-types
   replaceState: Function
+  // eslint-disable-next-line @typescript-eslint/ban-types
   registerModule: Function
+  // eslint-disable-next-line @typescript-eslint/ban-types
   unregisterModule: Function
 }
 
@@ -67,14 +70,6 @@ function createRootStore(): RootStore {
   }
 }
 
-interface Store {
-  identifier: string
-  state: any
-  subscribe: (
-    cb: (mutation: { name: string; payload: any[] }) => void,
-  ) => () => void
-}
-
 const onInitialized: OnInitializedHook = (identifier, state, api) => {
   if (!devtoolHook) return
 
@@ -104,7 +99,7 @@ const onInitialized: OnInitializedHook = (identifier, state, api) => {
 
   Object.defineProperty(rootStore.state, identifier, {
     get: () => state,
-    set: newState => {
+    set: (newState) => {
       Object.assign(state, newState)
     },
   })
@@ -116,7 +111,7 @@ const onInitialized: OnInitializedHook = (identifier, state, api) => {
   return wrappedApi
 }
 
-export function installDevtools() {
+export function installDevtools(): void {
   if (!devtoolHook) return
 
   if (!rootStore) {

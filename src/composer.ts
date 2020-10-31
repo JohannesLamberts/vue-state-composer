@@ -39,7 +39,17 @@ function installStateComposer() {
   })
 }
 
-export function createComposer({ hydration = {} }: ComposerOptions = {}) {
+type UnregisterStoreFn = () => void
+
+export interface Composer {
+  exportHydrationData: () => Record<string, any>
+  registerStore: (store: ComposerStore) => UnregisterStoreFn
+  findHydrationData: (identifier: string) => any | undefined
+}
+
+export function createComposer({
+  hydration = {},
+}: ComposerOptions = {}): Composer {
   if (!installed) {
     installStateComposer()
     installed = true
@@ -52,7 +62,7 @@ export function createComposer({ hydration = {} }: ComposerOptions = {}) {
   }
 
   function unregisterStore(store: ComposerStore) {
-    activeStores.value = activeStores.value.filter(val => val !== store)
+    activeStores.value = activeStores.value.filter((val) => val !== store)
   }
 
   function registerStore(store: ComposerStore) {
@@ -62,7 +72,7 @@ export function createComposer({ hydration = {} }: ComposerOptions = {}) {
 
   function exportHydrationData() {
     const data: Record<string, any> = {}
-    activeStores.value.forEach(store => {
+    activeStores.value.forEach((store) => {
       data[store.identifier] = store.state
     })
     return data
@@ -77,7 +87,7 @@ export function createComposer({ hydration = {} }: ComposerOptions = {}) {
 
 const ComposerSymbol = Symbol('StateComposer') as InjectionKey<Composer>
 
-export function provideComposer(composer: Composer = createComposer()) {
+export function provideComposer(composer: Composer = createComposer()): void {
   provide(ComposerSymbol, composer)
 }
 
@@ -88,5 +98,3 @@ function injectComposer() {
   }
   return composer
 }
-
-export type Composer = ReturnType<typeof createComposer>
