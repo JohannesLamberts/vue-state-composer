@@ -2155,7 +2155,7 @@ fs-extra@8.1.0:
     jsonfile "^4.0.0"
     universalify "^0.1.0"
 
-fs-extra@^9.0.0:
+fs-extra@^9.0.0, fs-extra@^9.0.1:
   version "9.0.1"
   resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-9.0.1.tgz#910da0062437ba4c39fedd863f1675ccfefcb9fc"
   integrity sha512-h2iAoN838FqAFJY2/qVpzFXy+EBxfVE220PalAqQLDVsFOHLJrZvut5puAbCdNv6WJk+B8ihI+k0c7JK5erwqQ==
@@ -2938,10 +2938,12 @@ jest-haste-map@^24.9.0:
   optionalDependencies:
     fsevents "^1.2.7"
 
-jest-html-reporters@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/jest-html-reporters/-/jest-html-reporters-1.2.1.tgz#74610de7373910e822387bbf7a59eaff65c3ca85"
-  integrity sha512-Ea2zxV7Hhg3pE6cZ+70pS5PkiBywKG8pLuyBc9/JgR6ifnKm2U3t6kvAPX9UNID6YwsPBZjD9sANZ0p49rN4pA==
+jest-html-reporters@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/jest-html-reporters/-/jest-html-reporters-2.1.1.tgz#dc442a09589a09216919a46faf5402e57164ba03"
+  integrity sha512-SVp3ayXdiD0HphQEBVzYCGceHsBrAhbh3pAH6A0wkxMt4H0/xVI/kSv2a9/R8+fWSfoWd804lzRbmxSI6v2NGw==
+  dependencies:
+    fs-extra "^9.0.1"
 
 jest-jasmine2@^24.9.0:
   version "24.9.0"
